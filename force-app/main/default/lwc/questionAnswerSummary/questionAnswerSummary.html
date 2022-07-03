@@ -1,0 +1,64 @@
+<template>
+    <template if:true={showList}>
+        <template for:each={questionsToView} for:item="question">
+            <div key={question.QuestionId}>
+                <p class="questionStyle">{question.Name}</p>
+                <p class="descriptionStyle">{question.Description}</p>
+            </div>
+
+            <template for:each={question.Answers} for:item="answer">
+                <div key={answer.AnswerId}>
+                    <template if:true={question.IsCheckBoxType}>
+                        <div class="slds-grid">
+                            <lightning-input type="checkbox" 
+                                            label={answer.Name} 
+                                            name={answer.Id} 
+                                            checked={answer.IsChose} 
+                                            disabled>
+                            </lightning-input>
+                            <lightning-icon icon-name="action:approval" style="zoom: 35%" if:true={answer.IsCorrect}></lightning-icon>
+                            <lightning-icon icon-name="action:close" style="zoom: 35%" if:true={answer.IsChoseCorrect}></lightning-icon>
+                        </div>
+                    </template>
+                    
+                    <template if:true={question.IsRadioButtonType}>
+                        <div class="slds-grid">
+                            <lightning-input type="radio" 
+                                            label={answer.Name} 
+                                            name={answer.Id} 
+                                            checked={answer.IsChose} 
+                                            disabled>
+                            </lightning-input>
+                            <lightning-icon icon-name="action:approval" style="zoom: 35%" if:true={answer.IsCorrect}></lightning-icon>
+                            <lightning-icon icon-name="action:close" style="zoom: 35%" if:true={answer.IsChoseCorrect}></lightning-icon>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <div key={question.QuestionId}>
+                <br> 
+            </div>
+        </template>
+        <br>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item flexibility="auto">
+                <lightning-button label="Previous" 
+                                icon-name="utility:chevronleft" 
+                                disabled={disablePreviousButton}
+                                onclick={handlePrevious}>
+                </lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto">
+                Page {page} of {totalPage}
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto">
+                <lightning-button label="Next" 
+                                icon-name="utility:chevronright" 
+                                icon-position="right"
+                                disabled={disableNextButton}
+                                onclick={handleNext}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+</template>

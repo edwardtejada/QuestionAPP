@@ -1,0 +1,16 @@
+<template>
+    <lightning-datatable
+                key-field="Id"
+                data={users}
+                max-row-selection="1"
+                columns={columns}
+                onrowselection={handleRowSelection}>
+    </lightning-datatable>
+    <br>
+    <p class="message">Avoid selection, create user anyway</p>
+    <lightning-button 
+                    label="Create User" 
+                    class="my-button"
+                    onclick={handleCreateUser}>
+    </lightning-button>
+</template>

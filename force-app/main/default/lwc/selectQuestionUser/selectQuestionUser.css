@@ -1,0 +1,10 @@
+.message {
+    font-style: italic;
+    font-size: 15px;
+}
+
+.my-button {
+    --sds-c-button-text-color: #f4f7f9;
+    --sds-c-button-neutral-color-background: rgb(0, 187, 45);
+    --sds-c-button-neutral-color-border-hover:rgb(0, 187, 45);
+}
